@@ -1,17 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ChildComponent from './ChildComponent';
+import { useDispatch } from 'react-redux';
+import { actionCreators } from './state/index';
+import { bindActionCreators } from 'redux';
 
-class App extends Component {
-  state = {
-    text: "Important Text"
-  }
+function App() {
+  const dispatch = useDispatch();
+  const { changeText } = bindActionCreators(actionCreators, dispatch);
 
-  render() {
-    return <div>
-        <ChildComponent text={this.state.text} />
-        <ChildComponent text={this.state.text} />
-      </div>;
-  }
+  return (
+    <div>
+      <ChildComponent />
+      <ChildComponent />
+      <button onClick={() => changeText("App changed it")}>Change text</button>
+    </div>
+  )
 }
 
 export default App;

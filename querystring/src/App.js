@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 
 class App extends Component {
   state = {
-    text: "Default text"
+    text: {}
+  }
+
+  componentDidMount() {
+    this.setState({ 
+      text: queryString.parse(this.props.location.search, {sort: false}),
+    });
   }
 
   render() {
     const { text } = this.state;
-    return <div>
+
+    return (
       <div>
-        {text}
+        {
+          Object.entries(text)
+          .map(item => { 
+            return (
+              <p key={Math.random()}>{item[0]}: {item[1]}</p>
+            )
+          })
+        }
       </div>
-    </div>;
+    )
   }
 }
 

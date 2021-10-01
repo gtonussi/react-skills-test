@@ -5,21 +5,23 @@ class App extends Component {
     text: 'Landing Page 1'
   }
 
-  componentDidUpdate() {
-    console.log(this.state.text);
+  componentDidMount() {
+    console.log(this.state.text); // 1st console.log
+    this.setState({ text: 'Landing Page 2' }); // Changes text value > activates componentDidUpdate
   }
 
-  componentDidMount() {
-    console.log(this.state.text);
-    this.setState({ text: 'Landing Page 2' });
+  componentDidUpdate() {
+    console.log(this.state.text); // 2nd console.log
+
+    const { text } = this.state; // creates a variable with current state
+    
+    if (text === 'Landing Page 2') { // Gets afirmative
+      this.setState({ text: 'Landing Page 3' }); // 3rd console.log
+    }
   }
 
   render() {
-    const { text } = this.state;
     
-    if (text === 'Landing Page 2')
-      this.setState({ text: 'Landing Page 3' });
-
     return <div>
       {this.state.text}
     </div>;

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './App2';
 import Page2 from './Page2';
 import { Route, BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
